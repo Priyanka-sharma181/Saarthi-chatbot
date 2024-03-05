@@ -2,21 +2,21 @@
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './model/user.entity';
+import { RmEntity } from './model/rm.entity';
 import { AppController } from './app.controller';
 import { UserService } from './model/user.service';
 import * as dotenv from 'dotenv';
 import { databaseConfig } from './config/database-config.service';
 import { APP_FILTER } from '@nestjs/core';
 import { LoggingService } from './common/middleware/logger.middleware';
-import { LocalizationModule } from './localization/localization.module';
 import { SwiftchatModule } from './swiftchat/swiftchat.module';
 import { HttpExceptionFilter } from './common/exception/http-exception.filter';
 import { ChatbotModule } from './chat/chatbot.module';
 import { MessageModule } from './message/message.module';
+import { RmService } from './chat/rm.service';
+import { AttendanceEntity } from './model/attedance.entity';
 
 dotenv.config();
-
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -24,7 +24,7 @@ dotenv.config();
         return databaseConfig;
       },
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([RmEntity,AttendanceEntity]),
     MessageModule,
     ChatbotModule,
     SwiftchatModule,
@@ -37,6 +37,7 @@ dotenv.config();
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
+    RmService,
   ],
 })
 export class AppModule {}

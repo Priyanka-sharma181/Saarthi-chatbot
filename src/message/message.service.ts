@@ -26,6 +26,9 @@ export abstract class MessageService {
     }
   }
 
-  abstract sendWelcomeMessage(from: string, language: string);
   abstract sendLanguageChangedMessage(from: string, language: string);
+  abstract senRemiderMessageToParent(from: string, language: string);
+  abstract sendAttednaceMessagToRM(from: string, language: string);
+  abstract askRmToSendWork(from: string, language: string);
+abstract sendMessageToRM(from: string);
 }

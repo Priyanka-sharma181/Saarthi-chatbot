@@ -1,14 +1,14 @@
 // user.module.ts
 
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity';
 import { UserService } from './user.service';
-import { MockUserService } from './mockuser.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { RmEntity } from './rm.entity';
+import { AttendanceEntity } from './attedance.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  providers: [{ provide: UserService, useClass: MockUserService }],
-  exports: [UserService], // Export the UserService to make it available for other modules
+  imports: [TypeOrmModule.forFeature([RmEntity,AttendanceEntity])], // Add TypeOrmModule.forFeature here
+  providers: [UserService,AttendanceEntity],
+  exports: [UserService],
 })
 export class UserModule {}
