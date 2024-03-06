@@ -7,28 +7,25 @@ export class AttendanceEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'date', name: 'Today_Date' })
+  @Column({ type: 'date', name: 'Today_Date',nullable:true })
   Today_Date: Date;
 
-  @Column({ name: 'RM_code' })
+  @Column({ name: 'RM_code',nullable:true })
   RM_code: string;
 
-  @Column({ name: 'CL_code' })
+  @Column({ name: 'CL_code',nullable:true })
   CL_code: string;
 
-  @Column({ name: 'Reason' })
+  @Column({ name: 'Reason',nullable:true })
   Reason: string;
 
-  @Column({ type: 'date', name: 'Date' })
+  @Column({ type: 'date', name: 'Date',nullable:true })
   Date: Date;
 
-  @Column({ name: 'Attendance' })
+  @Column({ name: 'Attendance' ,nullable:true})
   Attendance: string;
 
-  @Column({ name: 'TimeStamp' })
+  @Column({ name: 'TimeStamp',nullable:true })
   TimeStamp: string;
-
-  @Column({ type: 'numeric', precision: 10, scale: 2 })
-  numericColumn: number;
 
 }

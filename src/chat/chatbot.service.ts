@@ -29,9 +29,10 @@ export class ChatbotService {
   public async processMessage(body: any): Promise<any> {
     try {
       const { from ,button_response} = body;
-      console.log(button_response.body);
       if(button_response.body=="yes"){
-        await this.message.askRmToSendWork(from,"Hindi")
+        await this.message.askRmToSendWork(from)
+      } else if(button_response.body=="sendAll"){
+        await this.rmService.sendWorkSheetToParent(from)
       }
       // await this.rmService.sendMessageToRMforAskingWork(from,"hindi")
     } catch (error) {

@@ -15,6 +15,7 @@ import { ChatbotModule } from './chat/chatbot.module';
 import { MessageModule } from './message/message.module';
 import { RmService } from './chat/rm.service';
 import { AttendanceEntity } from './model/attedance.entity';
+import { ParentEntity } from './model/parent.entity';
 
 dotenv.config();
 @Module({
@@ -24,7 +25,7 @@ dotenv.config();
         return databaseConfig;
       },
     }),
-    TypeOrmModule.forFeature([RmEntity,AttendanceEntity]),
+    TypeOrmModule.forFeature([RmEntity,AttendanceEntity,ParentEntity]),
     MessageModule,
     ChatbotModule,
     SwiftchatModule,

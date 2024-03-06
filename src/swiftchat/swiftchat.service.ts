@@ -73,7 +73,7 @@ async senRemiderMessageToParent(from,language){
   );
   return response;
 }
-async askRmToSendWork(from,language){
+async askRmToSendWork(from){
   const requestData  = {
     to: from,
     type: 'button',
@@ -102,7 +102,18 @@ async askRmToSendWork(from,language){
   return response;
 }
 
-
+async sendWorkToParent(from, work){
+  const requestData = this.prepareRequestData(
+    from,
+    work,
+  );
+  const response = await this.sendMessage(
+    this.baseUrl,
+    requestData,
+    this.apiKey,
+  );
+  return response;
+}
 async sendMessageToRM(
   from: string
 ): Promise<void> {
@@ -137,6 +148,5 @@ async sendMessageToRM(
     this.apiKey,
   );
   return response;
-
 }
 }

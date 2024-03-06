@@ -49,7 +49,23 @@ export class AppController {
   }
 
   @Get('/sendMessageToRm')
-  async sendMessageToRm(){
-    await this.rmService.sendMessageToRMforAskingWork()
+  async sendMessageToRm(@Res() res){
+    try {
+      await this.rmService.sendMessageToRMforAskingWork()
+      res.status(200).send({
+        status: {
+          code: 0,
+          message: 'Success',
+        },
+      });
+    } catch (error) {
+      res.status(500).send({
+        status: {
+          code: 1,
+          message: error.message,
+        },
+      });
+    }
+   
   }
 }
